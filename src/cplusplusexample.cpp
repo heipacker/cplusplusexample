@@ -6,6 +6,7 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
+#include "stdio.h"
 #include <iostream>
 using namespace std;
 class Shape{
@@ -61,5 +62,15 @@ int main() {
 	Rectangle rect;
 	rect.set_values(3, 4);
 	cout << "area: " << rect.area() << endl;
+	cout << 3+4 << endl;
+	cout << "\t\a" << endl;
+	//cout << '\a';
+	//printf("\007");
+	//printf("\b");
+	//printf("%c",'\a');
+	//printf("%c",'\007');
+	int c;
+	cin >> c;
+	cout << c;
 	return 0;
 }
