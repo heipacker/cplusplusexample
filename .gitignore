@@ -1,0 +1,4 @@
+# 忽略掉Debug
+/Debug
+#忽略掉.setting 下的所有文件
+/.settings/
