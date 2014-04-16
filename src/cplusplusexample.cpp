@@ -26,10 +26,13 @@ int main() {
 	//testEnum();
 	//testStruct();
 	//testHeader();
-	testArrayPointer();
-	test_pre_process();
-	test_pre_swap();
-	test_pre_vaargs();
+	//testArrayPointer();
+	//test_pre_process();
+	//test_pre_swap();
+	//test_pre_vaargs();
+	//test_pre_inmacor();
+	//test_pre_line();
+	test_pre_xinhao();
 	return 0;
 }
 

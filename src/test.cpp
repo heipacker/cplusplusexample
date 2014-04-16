@@ -53,6 +53,27 @@ using namespace std;
 #define my_printf(...) printf(__VA_ARGS__)
 #endif
 
+#define TEST1(a,b) do{ printf( #a "<" #b "=%d\n", (a)<(b)); }while(0)
+
+void test_pre_xinhao(){
+	TEST1(1, 2);
+}
+
+void test_pre_line(){
+	printf("line: %d, file: %s\n", __LINE__, __FILE__);
+	#line 100 "test_pre_line"
+	printf("line: %d, file: %s\n", __LINE__, __FILE__);
+	printf("line: %d, file: %s\n", __LINE__, __FILE__);
+}
+
+void test_pre_inmacor(){
+	printf("当前行号：%d\n", __LINE__);
+	printf("当前源文件：%s\n", __FILE__);
+	printf("编译日期：%s\n", __DATE__);
+	printf("编译时间：%s\n", __TIME__);
+	printf("是否符合STD标准：%d\n", __STDC__);
+}
+
 void test_pre_vaargs(){
 	my_printf("111111111");
 }

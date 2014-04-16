@@ -11,6 +11,12 @@
 #include <iostream>
 using namespace std;
 
+void test_pre_xinhao();
+
+void test_pre_line();
+
+void test_pre_inmacor();
+
 void test_pre_vaargs();
 
 void test_pre_swap();
