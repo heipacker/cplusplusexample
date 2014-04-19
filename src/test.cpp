@@ -55,6 +55,28 @@ using namespace std;
 
 #define TEST1(a,b) do{ printf( #a "<" #b "=%d\n", (a)<(b)); }while(0)
 
+#define print(tem, ...) fprintf(stdout, tem, ## __VA_ARGS__)
+
+void test_pre_printf(){
+	print("hello world----%d\n",1111);
+	print("hello world----\n");
+}
+//用括号将指针括起来
+//void print_array(int (*a)[3]){
+void print_array(int a[1][3]){
+	for(int i = 0; i<2;++i){
+		for(int j = 0; j<3; ++j){
+			printf("%d\n",a[i][j]);
+		}
+	}
+}
+
+void test_pre_print_array(){
+	int a[2][3] = {{1,2,3},
+					{4,5,6}};
+	print_array(a);
+}
+
 void test_pre_xinhao(){
 	TEST1(1, 2);
 }

@@ -11,6 +11,10 @@
 #include <iostream>
 using namespace std;
 
+void test_pre_print_array();
+
+void test_pre_printf();
+
 void test_pre_xinhao();
 
 void test_pre_line();

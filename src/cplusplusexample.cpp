@@ -32,7 +32,9 @@ int main() {
 	//test_pre_vaargs();
 	//test_pre_inmacor();
 	//test_pre_line();
-	test_pre_xinhao();
+	//test_pre_xinhao();
+	//test_pre_printf();
+	test_pre_print_array();
 	return 0;
 }
 
