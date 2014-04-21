@@ -57,6 +57,67 @@ using namespace std;
 
 #define print(tem, ...) fprintf(stdout, tem, ## __VA_ARGS__)
 
+#define MAXLINE 1000
+
+void test_goto(){
+	if(!2){
+		goto t;
+	} else{
+		goto f;
+	}
+	f:printf("ffffffffffff\n");
+	t:printf("tttttttttttt\n");//也是会执行的
+}
+
+void test_not_operation(){
+	if(!2){
+		printf("true.");
+	} else{
+		printf("false.");
+	}
+}
+
+void copy_str(char from[], char to[]){
+	for(int i=0; (to[i]=from[i])!='\0';i++);
+}
+
+int getline(char s[], int limit){
+	int c, i=0;
+	while(i<(limit-1)&&(c=getchar())!=EOF&&c!='\n'){
+		s[i++] = c;
+	}
+	if(c == '\n'){
+		s[i++] = '\n';
+	}
+	s[i] = '\0';
+	return i;
+}
+
+void test_read_line(){
+	int len = 0, max = 0;
+	char line[MAXLINE], longest[MAXLINE];
+
+	while((len = getline(line, MAXLINE))!=0){
+		if(len>max){
+			max = len;
+			copy_str(line, longest);
+		}
+	}
+	if(max>0){
+		printf("%s", longest);
+	}
+}
+
+void test_print_eof(){
+	printf("EOF is:%d\n", EOF);
+}
+
+void test_get_put_char(){
+	int c;
+	while ((c = getchar()) != EOF)
+		putchar(c);
+}
+
 void test_pre_printf(){
 	print("hello world----%d\n",1111);
 	print("hello world----\n");

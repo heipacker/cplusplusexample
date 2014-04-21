@@ -34,7 +34,12 @@ int main() {
 	//test_pre_line();
 	//test_pre_xinhao();
 	//test_pre_printf();
-	test_pre_print_array();
+	//test_pre_print_array();
+	//test_get_put_char();
+	//test_print_eof();
+	//test_read_line();
+	//test_not_operation();
+	test_goto();
 	return 0;
 }
 

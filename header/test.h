@@ -11,6 +11,16 @@
 #include <iostream>
 using namespace std;
 
+void test_goto();
+
+void test_not_operation();
+
+void test_read_line();
+
+void test_print_eof();
+
+void test_get_put_char();
+
 void test_pre_print_array();
 
 void test_pre_printf();
