@@ -26,6 +26,7 @@ int main() {
 	//testEnum();
 	//testStruct();
 	//testHeader();
+<<<<<<< HEAD
 	//testArrayPointer();
 	//test_pre_process();
 	//test_pre_swap();
@@ -40,6 +41,12 @@ int main() {
 	//test_read_line();
 	//test_not_operation();
 	test_goto();
+=======
+	testArrayPointer();
+	test_pre_process();
+	test_pre_swap();
+	test_pre_vaargs();
+>>>>>>> branch 'master' of https://github.com/heipacker/cplusplusexample.git
 	return 0;
 }
 
