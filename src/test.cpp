@@ -5,8 +5,7 @@
  *      Author: Administrator
  */
 #include "stdio.h"
-#include "stdlib.h"//用于产生随机数
-#include "time.h"//用于产生随机数
+#include "stdlib.h"//用于产生随机数#include "time.h"//用于产生随机数#include <stdarg.h>
 #include <iomanip>
 #include <typeinfo>
 #include <iostream>
@@ -36,15 +35,10 @@ using namespace std;
 
 #define X 3
 #define PRINTF(x) printf("the "#x"lait %d\n",((x)*(x)));
-#define SCAN(N,String) scanf("%"#N"s",String);  //N是截取的个数  String是存储的字符串
-
-#define BL1 bb##ll##1
-
+#define SCAN(N,String) scanf("%"#N"s",String);  //N是截取的个数  String是存储的字符串#define BL1 bb##ll##1
 #define BL(N) bbll##N
-
 #define incr(v, low, high) \
   do{ for ((v) = (low); (v) <= (high); (v)++); }while(0)
-
 #define swap(x,y) do { unsigned long _temp=x; x=y; y=_temp;} while (0)
 
 #ifdef DEBUG
@@ -59,97 +53,189 @@ using namespace std;
 
 #define MAXLINE 1000
 
-void test_goto(){
-	if(!2){
-		goto t;
-	} else{
-		goto f;
+void test_print_metric(){
+	int a[4][4] = {
+			{1, 2, 3, 4},
+			{5, 6, 7, 8},
+			{9, 10,11,12},
+			{13,14,15,16}
+	};
+	int c = 3;
+	for(int j=c; j>=-c;--j){
+		int m, n;
+		if(j>0){
+			m = 0;
+			n = j;
+		} else{
+			m = -j;
+			n = 0;
+		}
+		for(; m<=c&&n<=c; ++n,++m){
+			printf("%d\t", a[m][n]);
+		}
+		printf("\n");
 	}
-	f:printf("ffffffffffff\n");
-	t:printf("tttttttttttt\n");//也是会执行的
 }
 
-void test_not_operation(){
-	if(!2){
+/* filecopy: copy file ifp to file ofp */
+void filecopy(FILE *ifp, FILE *ofp) {
+	int c;
+	while ((c = getc(ifp)) != EOF) {
+		putc(c, ofp);
+	}
+}
+
+int test_file_operation(int argc, const char *argv[]) {
+	FILE *fp;
+	void filecopy(FILE *, FILE *);
+
+	if (argc == 1) { /* no args; copy standard input */
+		filecopy(stdin, stdout);
+	} else {
+		while (--argc > 0) {
+			if ((fp = fopen(*++argv, "r")) == NULL) {
+				printf("cat: can't open %s\n", *argv);
+				return 1;
+			} else {
+				filecopy(fp, stdout);
+				fclose(fp);
+			}
+		}
+	}
+	return 0;
+}
+
+void test_file_() {
+	//char *name[]={"Illegal manth", "Jan", "Feb", "Mar"};
+	const char *argv[] = { "11", "22" };
+	//char argv1[][5] = { { '1', '1' }, { '2', '2' } };
+	printf("%d\n", test_file_operation(2, argv));
+}
+
+void minprintf(char *fmt, ...) {
+	va_list ap; /* points to each unnamed arg in turn */
+	char *p, *sval;
+	int ival;
+	double dval;
+	va_start(ap, fmt); /* make ap point to 1st unnamed arg */
+	for (p = fmt; *p; p++) {
+		if (*p != '%') {
+			putchar(*p);
+			continue;
+		}
+		switch (*++p) {
+		case 'd':
+			ival = va_arg(ap, int);
+			printf("%d", ival);
+			break;
+		case 'f':
+			dval = va_arg(ap, double);
+			printf("%f", dval);
+			break;
+		case 's':
+			for (sval = va_arg(ap, char *); *sval; sval++) {
+				putchar(*sval);
+			}
+			break;
+		default:
+			putchar(*p);
+			break;
+		}
+	}
+	va_end(ap); /* clean up when done */
+}
+
+void test_goto() {
+	if (!2) {
+		goto t;
+	} else {
+		goto f;
+	}
+	f: printf("ffffffffffff\n");
+	t: printf("tttttttttttt\n"); //也是会执行的
+}
+
+void test_not_operation() {
+	if (!2) {
 		printf("true.");
-	} else{
+	} else {
 		printf("false.");
 	}
 }
 
-void copy_str(char from[], char to[]){
-	for(int i=0; (to[i]=from[i])!='\0';i++);
+void copy_str(char from[], char to[]) {
+	for (int i = 0; (to[i] = from[i]) != '\0'; i++)
+		;
 }
 
-int getline(char s[], int limit){
-	int c, i=0;
-	while(i<(limit-1)&&(c=getchar())!=EOF&&c!='\n'){
+int getline(char s[], int limit) {
+	int c, i = 0;
+	while (i < (limit - 1) && (c = getchar()) != EOF && c != '\n') {
 		s[i++] = c;
 	}
-	if(c == '\n'){
+	if (c == '\n') {
 		s[i++] = '\n';
 	}
 	s[i] = '\0';
 	return i;
 }
 
-void test_read_line(){
+void test_read_line() {
 	int len = 0, max = 0;
 	char line[MAXLINE], longest[MAXLINE];
 
-	while((len = getline(line, MAXLINE))!=0){
-		if(len>max){
+	while ((len = getline(line, MAXLINE)) != 0) {
+		if (len > max) {
 			max = len;
 			copy_str(line, longest);
 		}
 	}
-	if(max>0){
+	if (max > 0) {
 		printf("%s", longest);
 	}
 }
 
-void test_print_eof(){
+void test_print_eof() {
 	printf("EOF is:%d\n", EOF);
 }
 
-void test_get_put_char(){
+void test_get_put_char() {
 	int c;
 	while ((c = getchar()) != EOF)
 		putchar(c);
 }
 
-void test_pre_printf(){
-	print("hello world----%d\n",1111);
+void test_pre_printf() {
+	print("hello world----%d\n", 1111);
 	print("hello world----\n");
 }
 //用括号将指针括起来
 //void print_array(int (*a)[3]){
-void print_array(int a[1][3]){
-	for(int i = 0; i<2;++i){
-		for(int j = 0; j<3; ++j){
-			printf("%d\n",a[i][j]);
+void print_array(int a[1][3]) {
+	for (int i = 0; i < 2; ++i) {
+		for (int j = 0; j < 3; ++j) {
+			printf("%d\n", a[i][j]);
 		}
 	}
 }
 
-void test_pre_print_array(){
-	int a[2][3] = {{1,2,3},
-					{4,5,6}};
+void test_pre_print_array() {
+	int a[2][3] = { { 1, 2, 3 }, { 4, 5, 6 } };
 	print_array(a);
 }
 
-void test_pre_xinhao(){
+void test_pre_xinhao() {
 	TEST1(1, 2);
 }
 
-void test_pre_line(){
+void test_pre_line() {
 	printf("line: %d, file: %s\n", __LINE__, __FILE__);
-	#line 100 "test_pre_line"
+#line 100 "test_pre_line"
 	printf("line: %d, file: %s\n", __LINE__, __FILE__);
 	printf("line: %d, file: %s\n", __LINE__, __FILE__);
 }
 
-void test_pre_inmacor(){
+void test_pre_inmacor() {
 	printf("当前行号：%d\n", __LINE__);
 	printf("当前源文件：%s\n", __FILE__);
 	printf("编译日期：%s\n", __DATE__);
@@ -157,44 +243,44 @@ void test_pre_inmacor(){
 	printf("是否符合STD标准：%d\n", __STDC__);
 }
 
-void test_pre_vaargs(){
+void test_pre_vaargs() {
 	my_printf("111111111");
 }
 
-void test_pre_swap(){
+void test_pre_swap() {
 	int x = 0, y = 1;
 	swap(x, y);
 	printf("%d, %d\n", x, y);
 	int a = 0;
-	incr(a,1, 10);
+	incr(a, 1, 10);
 	printf("%3d\n", a);
 }
 
-void test_pre_process(){
-	int BL1=10;
-	int BL(4)=15;
+void test_pre_process() {
+	int BL1 = 10;
+	int BL(4) = 15;
 	printf("%d\n", BL1);
 	printf("%d\n", BL(4));
 	printf("%d\n", Y);
 	PRINTF(3)
-	char dd[256] = {'1','2','3','\0'};
+	char dd[256] = { '1', '2', '3', '\0' };
 	char db[256] = "121212";
 	//SCAN(2, dd)
 	printf("%s size:%d\n", dd, sizeof(dd));
 	printf("%s size:%d\n", db, sizeof(db));
 }
 
-void testArrayPointer(){
-	int a[2][2] = {{1,2},{3,4}};
-	char c[3] = {'1','2','\0'};
+void testArrayPointer() {
+	int a[2][2] = { { 1, 2 }, { 3, 4 } };
+	char c[3] = { '1', '2', '\0' };
 	//int **aa;//类型int** 指向的类型int*
-	int (*b)[2];//类型int (*)[2] 指向的类型int a[2]
+	int (*b)[2]; //类型int (*)[2] 指向的类型int a[2]
 	char (*bc)[3];
 	b = a;
 	bc = &c;
 	/*aa = &(&a);
-	printf("aa:%d\n", **aa);*/
-	printf("b:%d\n", *(*b+1));
+	 printf("aa:%d\n", **aa);*/
+	printf("b:%d\n", *(*b + 1));
 	printf("bc:%s\n", *bc);
 	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 }
@@ -570,6 +656,7 @@ void testHeader() {
 	triangle t = { 3, 4, 5, 36.86989, 53.13011, 90 };
 	cout << "Perimeter of circle " << perimeter_of_circle(c.r) << endl;
 	cout << "Area of square " << area_of_square(s.a) << endl;
-	cout << "Perimeter of rectangle " << perimeter_of_rectangle(r.a, r.b) << endl;
+	cout << "Perimeter of rectangle " << perimeter_of_rectangle(r.a, r.b)
+			<< endl;
 	cout << "Area of triangle " << area_of_triangle(t.b, t.c, t.alpha) << endl;
 }

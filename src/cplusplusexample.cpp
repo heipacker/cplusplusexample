@@ -8,9 +8,10 @@
 
 #include <iostream>
 #include "../header/test.h"
+#include "../header/test_cplus_cplus.h"
 using namespace std;
 
-int main() {
+int main(int argc, char *argv[]) {
 	//printTypeSize();
 	//printType();
 	//testDefaultValue();
@@ -39,7 +40,11 @@ int main() {
 	//test_print_eof();
 	//test_read_line();
 	//test_not_operation();
-	test_goto();
+	//test_goto();
+	//char formt[] = {"%s\n"};
+	//minprintf(formt, "hello, world.");
+	//test_print_metric();
+	test_cplus_cplus(argc, argv);
 	return 0;
 }
 
