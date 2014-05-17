@@ -44,7 +44,8 @@ int main(int argc, char *argv[]) {
 	//char formt[] = {"%s\n"};
 	//minprintf(formt, "hello, world.");
 	//test_print_metric();
-	test_cplus_cplus(argc, argv);
+	test_mcoro();
+	//test_cplus_cplus(argc, argv);
 	return 0;
 }
 

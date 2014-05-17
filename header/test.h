@@ -11,6 +11,8 @@
 #include <iostream>
 using namespace std;
 
+void test_mcoro();
+
 void test_print_metric();
 
 void test_file_();

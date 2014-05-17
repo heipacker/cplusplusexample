@@ -53,6 +53,13 @@ using namespace std;
 
 #define MAXLINE 1000
 
+#define DOUBLE(x) x+x // x*2
+
+void test_mcoro(){
+	int i = DOUBLE(5)*5;
+	cout<<i<<endl;
+}
+
 void test_print_metric(){
 	int a[4][4] = {
 			{1, 2, 3, 4},
