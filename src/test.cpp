@@ -55,9 +55,32 @@ using namespace std;
 
 #define DOUBLE(x) x+x // x*2
 
+void test_sizeof(){
+	enum Day mon = Monday;
+	int a = 10;
+	int *p = &a;
+	unsigned int app;
+	//app = sizeof (int) * p; 这里先执行sizeof(int) 然后执行乘法操作		编译不通过 改为app = sizeof (int) * (int)p
+	//app = sizeof (int) * p;
+
+	printf("sizeof (int) * p result:%d\n", app);
+}
+
 void test_mcoro(){
 	int i = DOUBLE(5)*5;
 	cout<<i<<endl;
+}
+
+const char *c[] = {"ENTER","NEW","POINT","FIRST"};
+const char **cp[] = { c + 3 , c + 2 , c + 1 , c};
+const char ***cpp = cp;
+
+void test_arrays_3p(void)
+{
+	printf("%s",**++cpp);
+	printf("%s",*--*++cpp+3);
+	printf("%s",*cpp[-2]+3);
+	printf("%s\n",cpp[-1][-1]+1);
 }
 
 void test_print_metric(){
@@ -666,4 +689,13 @@ void testHeader() {
 	cout << "Perimeter of rectangle " << perimeter_of_rectangle(r.a, r.b)
 			<< endl;
 	cout << "Area of triangle " << area_of_triangle(t.b, t.c, t.alpha) << endl;
+}
+
+void generate(int m, int n){
+	for(int i = 0; i < n; i++){
+		if(rand()%(n-i) < m) { //即以t/(n-i)的概率执行下面的语句
+			printf("%d\n",i);
+			m--;
+		}
+	}
 }

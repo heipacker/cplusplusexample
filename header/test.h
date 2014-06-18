@@ -11,6 +11,22 @@
 #include <iostream>
 using namespace std;
 
+template<class T> int compare(const T& l, const T& r){
+	if(l>r){
+		return 1;
+	} else if(l<r){
+		return -1;
+	} else{
+		return 0;
+	}
+}
+
+void test_sizeof();
+
+void test_arrays_3p(void);
+
+void generate(int m,int n);
+
 void test_mcoro();
 
 void test_print_metric();
