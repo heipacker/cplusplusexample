@@ -8,8 +8,20 @@
 #ifndef TEST_H_
 #define TEST_H_
 
+#include <stdio.h>
+
 #include <iostream>
 using namespace std;
+
+#include "perm.h"
+
+void test_permaution();
+
+void test_declare();
+
+void test_void_pointer();
+
+void testDeclareArray();
 
 template<class T> int compare(const T& l, const T& r){
 	if(l>r){
@@ -20,6 +32,7 @@ template<class T> int compare(const T& l, const T& r){
 		return 0;
 	}
 }
+void func(char (&p)[10]);
 
 void test_sizeof();
 

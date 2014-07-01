@@ -49,7 +49,11 @@ int main(int argc, char *argv[]) {
 	//generate(3,10);
 	//test_arrays_3p();
 	//test_sizeof();
-	cout << compare(1, 2);
+	//cout << compare(1, 2);
+	//testDeclareArray();
+	//test_void_pointer();
+	//test_declare();
+	test_permaution();
 	return 0;
 }
 

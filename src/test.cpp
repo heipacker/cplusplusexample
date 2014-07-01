@@ -55,6 +55,10 @@ using namespace std;
 
 #define DOUBLE(x) x+x // x*2
 
+void func(char (&p)[10]){
+    printf("%d\n",sizeof(p));        // 10
+}
+
 void test_sizeof(){
 	enum Day mon = Monday;
 	int a = 10;
@@ -64,6 +68,55 @@ void test_sizeof(){
 	//app = sizeof (int) * p;
 
 	printf("sizeof (int) * p result:%d\n", app);
+}
+
+void test_permaution(){
+	char pstr[4] = "123";
+	perm(pstr, 0, strlen(pstr));
+}
+
+void test_declare(){
+	string s("hello, world.");
+
+	string *sp = &s;
+
+	cout<<*sp;
+}
+
+void* test_void_pointer_internal(void *p){
+	int *pp = static_cast<int *>(p);
+	*pp = 12;
+
+	int i = 10;
+	float f = i;
+
+	float ff = 2^24 + 1;
+	printf("%f\n", f);
+	printf("%f\n", ff);
+
+	return pp;
+}
+
+void test_void_pointer(){
+	int *pp = new int(11);
+
+	int *pt = static_cast<int *>(test_void_pointer_internal(pp));
+
+	printf("%d\n", *pt);
+}
+
+void testDeclareArray(){
+	int *p = new int[10];
+	int *pp = new int[10]();
+	for(int i=0; i<10; ++i){
+		printf("%d\t", p[i]);
+	}
+
+	printf("\n");
+
+	for(int i=0; i<10; ++i){
+		printf("%d\t", pp[i]);
+	}
 }
 
 void test_mcoro(){
