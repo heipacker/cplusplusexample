@@ -15,6 +15,8 @@ using namespace std;
 
 #include "perm.h"
 
+void test_cstyle_char();
+
 void test_permaution();
 
 void test_declare();

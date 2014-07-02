@@ -53,7 +53,8 @@ int main(int argc, char *argv[]) {
 	//testDeclareArray();
 	//test_void_pointer();
 	//test_declare();
-	test_permaution();
+	//test_permaution();
+	test_cstyle_char();
 	return 0;
 }
 

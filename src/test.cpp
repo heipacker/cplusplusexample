@@ -70,6 +70,30 @@ void test_sizeof(){
 	printf("sizeof (int) * p result:%d\n", app);
 }
 
+int *p = new int[10];//Œ¥≥ı ºªØ
+
+void test_cstyle_char(){
+	char ca1[] = {'C', '+', '+',};
+	char ca2[] = {'C', '+', '+', '\0'};
+	char ca3[] = "C++";
+
+	const char *cp = "C++";
+	char *cp1 = ca1;
+	char *cp2 = ca2;
+
+	for(int i = 0; i<10; ++i){
+		printf("%d\t", p[i]);
+	}
+	delete []p;
+	delete[] p;
+	//cp[1] = '-';
+	printf("%s\n", ca1);
+	printf("%s\n", ca2);
+	printf("%s\n", ca3);
+	printf("%s\n", cp);
+	printf("%d\n", 3&12);
+}
+
 void test_permaution(){
 	char pstr[4] = "123";
 	perm(pstr, 0, strlen(pstr));
