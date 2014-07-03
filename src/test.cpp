@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <typeinfo>
 #include <iostream>
+#include <vector>
 #include "../header/shape.h"
 #include "../header/test.h"
 using namespace std;
@@ -60,14 +61,76 @@ void func(char (&p)[10]){
 }
 
 void test_sizeof(){
-	enum Day mon = Monday;
+	//Day mon = Monday;
 	int a = 10;
 	int *p = &a;
-	unsigned int app;
+	printf("%d\n", *p);
+	unsigned int app = 0;
 	//app = sizeof (int) * p; 这里先执行sizeof(int) 然后执行乘法操作		编译不通过 改为app = sizeof (int) * (int)p
 	//app = sizeof (int) * p;
 
 	printf("sizeof (int) * p result:%d\n", app);
+}
+
+void test_hsort(){
+	int a[] = {1, 3, 2, 6, 4, 7, 4, 5, 3};
+	hsort(a, 8);
+	for(int i = 8; i>=0; --i){
+		printf("%d\t", a[i]);
+	}
+}
+
+void test_qsort(){
+	int a[] = {1, 3, 2, 6, 4, 7, 4, 5, 3};
+	qsort(a, 8);
+	for(int i = 0; i<9; ++i){
+		printf("%d\t", a[i]);
+	}
+}
+
+bool is_shorter(const string &v1, const string &v2){
+	return v1.size()<v2.size();
+}
+
+void print_values(int *array){
+
+}
+/*
+void print_values(int array[]){
+
+}
+
+void print_values(int array[10]){
+
+}*/
+
+void print_values(int (&array)[10]){
+	for(int i = 0; i<10; ++i){
+		printf("%d\t", array[i]);
+	}
+}
+
+void print_values(int (*matrix)[10]){
+
+}
+
+void print_vector(vector<int>::const_iterator beg, vector<int>::iterator end){
+	while(beg!=end){
+		printf("%d\t", *beg++);
+	}
+}
+
+void test_vector(){
+	vector<int> test;
+	for(int i = 0; i<10; ++i){
+		test.push_back(i);
+	}
+
+	print_vector(test.begin(), test.end());
+}
+
+void test_is_shorter(){
+	printf("%d\n", is_shorter(string("1111"), string("12")));
 }
 
 int *p = new int[10];//未初始化
@@ -91,6 +154,9 @@ void test_cstyle_char(){
 	printf("%s\n", ca2);
 	printf("%s\n", ca3);
 	printf("%s\n", cp);
+	printf("%s\n", cp1);
+	printf("%s\n", cp2);
+
 	printf("%d\n", 3&12);
 }
 
@@ -114,7 +180,8 @@ void* test_void_pointer_internal(void *p){
 	int i = 10;
 	float f = i;
 
-	float ff = 2^24 + 1;
+	//float ff = 2^24 + 1;
+	float ff = 2 + 1;
 	printf("%f\n", f);
 	printf("%f\n", ff);
 

@@ -9,11 +9,21 @@
 #define TEST_H_
 
 #include <stdio.h>
+#include <string>
 
-#include <iostream>
+#include "qsort.h"
+#include "hsort.h"
+#include "perm.h"
+
 using namespace std;
 
-#include "perm.h"
+void test_hsort();
+
+void test_qsort();
+
+void test_vector();
+
+void test_is_shorter();
 
 void test_cstyle_char();
 

@@ -54,7 +54,11 @@ int main(int argc, char *argv[]) {
 	//test_void_pointer();
 	//test_declare();
 	//test_permaution();
-	test_cstyle_char();
+	//test_cstyle_char();
+	//test_is_shorter();
+	//test_vector();
+	//test_qsort();
+	test_hsort();
 	return 0;
 }
 
