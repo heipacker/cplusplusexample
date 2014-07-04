@@ -17,11 +17,19 @@
 
 using namespace std;
 
+void test_fstream();
+
+void test_sstream();
+
+void test_stream();
+
 void test_lsort();
 
 void test_hsort();
 
 void test_qsort();
+
+void test_folat();
 
 void test_vector();
 

@@ -59,7 +59,8 @@ int main(int argc, char *argv[]) {
 	//test_vector();
 	//test_qsort();
 	//test_hsort();
-	test_lsort();
+	//test_lsort();
+	test_folat();
 	return 0;
 }
 

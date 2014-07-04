@@ -9,6 +9,9 @@
 #include <iomanip>
 #include <typeinfo>
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <stdexcept>
 #include <vector>
 #include "../header/shape.h"
 #include "../header/test.h"
@@ -58,6 +61,103 @@ using namespace std;
 
 void func(char (&p)[10]){
     printf("%d\n",sizeof(p));        // 10
+}
+
+void test_fstream(){
+	string ifile = string("test_in.txt");
+	ifstream infile(ifile.c_str());
+
+	if(!infile){
+		cerr << "error: unable to open input file: "
+				<< infile << endl;
+		return ;
+	}
+
+	string ofile = string("test_out.txt");
+	ofstream outfile(ofile.c_str());
+
+
+	//use open fun
+	infile.close();//先关闭
+	infile.open(ifile.c_str());
+
+	outfile.close();
+	outfile.open(ofile.c_str());
+
+	//读取文件中信息 然后输出
+	vector<string> files;
+	for(int i =0; i<3; ++i){
+		files.push_back("file" + i);
+	}
+	vector<string>::iterator it = files.begin();
+	while(it!=files.end()){
+		ifstream input(it->c_str());
+		if(!input){
+			input.close();
+			break;
+		}
+		string str;
+		while(input >> str){
+			cout << str;
+		}
+		input.close();
+		++it;
+	}
+
+	ofstream outfile1(ofile.c_str(), ofstream::out|ofstream::trunc);
+	ofstream appfile(ofile.c_str(), ofstream::app);
+
+	fstream inoutfile("", fstream::in|fstream::out);
+
+}
+
+void test_sstream(){
+	string line, word;
+	while(getline(cin, line)){
+		istringstream stream(line);
+		while(stream >> word){
+			cout << word;
+		}
+	}
+
+	//
+	int val1 = 512, val2 = 1024;
+	ostringstream format_message;
+	format_message << "val1" << val1 << "\n" << "val2" << val2 << "\n";
+
+	istringstream input_string(format_message.str());
+	string dump;
+	input_string >> dump >> val1 >> dump >> val2;
+
+	cout << val1 << "	" << val2 << endl;
+
+}
+
+void test_stream(){
+	int ival;
+	while(cin>>ival, !cin.eof()){
+		if(cin.bad()){
+			throw runtime_error("IO stream corrupted.");
+		}
+		if(cin.fail()){
+			cerr<<"bad data, try again";
+			cin.clear(istream::failbit);
+			continue;
+		}
+	}
+
+	//使用flush
+	cout << "first" << flush << "second" << flush;
+
+	cout << "first" << unitbuf << "second" << nounitbuf;
+}
+
+void test_folat(){
+	float s = 0.12f;
+	cout << s << endl;
+	cout << s * 100.0f << endl;
+	int v = int(s * 100.0f);
+	cout << v << endl;
 }
 
 void test_sizeof(){
