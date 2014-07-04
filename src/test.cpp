@@ -72,6 +72,43 @@ void test_sizeof(){
 	printf("sizeof (int) * p result:%d\n", app);
 }
 
+int intcomp(int *x, int *y){
+	return *x - *y;
+}
+
+void lookup(int &a){
+	printf("%s\n", "int &a");
+}
+
+void lookup(const int &a){
+	printf("%s\n", "int &a");
+}
+
+void lookup(int a){
+	printf("%s\n", "int a");
+}
+
+void test_lookup(){
+	const int a = 10;
+	const int &b = a;
+	//lookup(a);//左值
+	//lookup(b);
+}
+
+string init = string();
+int i = int(0);
+
+void test_lsort(){
+	int a[100000];
+	int n = 0;
+	while(scanf("%d", &a[n])!=EOF)++n;
+	//调用类库实现
+	qsort(a, n, sizeof(int), (int (*)(const void*, const void*))intcomp);
+	for(int i = 0; i<n; ++i){
+		printf("%d\t", a[i]);
+	}
+}
+
 void test_hsort(){
 	int a[] = {1, 3, 2, 6, 4, 7, 4, 5, 3};
 	hsort(a, 8);

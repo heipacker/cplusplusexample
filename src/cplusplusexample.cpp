@@ -58,7 +58,8 @@ int main(int argc, char *argv[]) {
 	//test_is_shorter();
 	//test_vector();
 	//test_qsort();
-	test_hsort();
+	//test_hsort();
+	test_lsort();
 	return 0;
 }
 

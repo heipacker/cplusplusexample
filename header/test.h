@@ -17,6 +17,8 @@
 
 using namespace std;
 
+void test_lsort();
+
 void test_hsort();
 
 void test_qsort();
