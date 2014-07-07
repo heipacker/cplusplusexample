@@ -17,6 +17,14 @@
 
 using namespace std;
 
+void test_max_cont_vector();
+
+void test_readdouble_fromfile();
+
+void test_vector_iterator();
+
+void test_readappendfile();
+
 void test_fstream();
 
 void test_sstream();

@@ -60,7 +60,11 @@ int main(int argc, char *argv[]) {
 	//test_qsort();
 	//test_hsort();
 	//test_lsort();
-	test_folat();
+	//test_folat();
+	//test_readappendfile();
+	//test_vector_iterator();
+	//test_readdouble_fromfile();
+	test_max_cont_vector();
 	return 0;
 }
 

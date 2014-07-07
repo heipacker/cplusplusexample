@@ -63,6 +63,132 @@ void func(char (&p)[10]){
     printf("%d\n",sizeof(p));        // 10
 }
 
+void test_vector_iterator(){
+	vector<int> vec;
+	for(int i=0; i<10; ++i){
+		vec.push_back(i);
+	}
+
+	vector<int>::const_iterator it = vec.begin();
+
+	while(it!=vec.end()){
+		cout << *it++;
+	}
+	//辛辛苦苦给你上课 希望你们有好的未来 还这样
+	vector<int>::const_reverse_iterator rit = vec.rbegin();
+	while(rit!=vec.rend()){
+		cout << *rit++;
+	}
+}
+
+int maxsum1(int vec[], int b, int e){
+	if(b==e){
+		return vec[b]<0?0:vec[b];
+	}
+	int m = (b + e)/2;
+	int lmax = 0, rmax = 0, sum = 0;
+	for(int i = m; i>b; --i){
+		sum += vec[i];
+		lmax = (lmax<sum)?sum:lmax;
+	}
+	sum = 0;
+	for(int i = m+1; i<=e; ++i){
+		sum += vec[i];
+		rmax = (rmax<sum)?sum:rmax;
+	}
+
+	int max = rmax + lmax;
+	rmax = maxsum1(vec, b, m);
+	max = (max<rmax)?rmax:max;
+	lmax = maxsum1(vec, m+1, e);
+
+	return (max<lmax)?lmax:max;
+}
+
+int test_maxsum1(){
+	int vec[] = {31, -41, 59, 26, -53, 58, 97, -93, -23, 84};
+	return maxsum1(vec, 0, 9);
+}
+
+void test_max_cont_vector(){
+	int vec[] = {31, -41, 59, 26, -53, 58, 97, -93, -23, 84};
+	int size = 10;
+	int maxsofar = 0;
+	//O(N^2)
+	for(int i = 0; i<size; ++i){
+		int sum = 0;
+		for(int j = i; j<size; ++j){
+			sum += vec[j];
+			maxsofar = (maxsofar<sum)?sum:maxsofar;
+		}
+	}
+	cout << "the maxsofar:" << maxsofar << endl;
+
+	//O(NlogN)
+	cout << "the maxsofar:" << test_maxsum1() << endl;
+
+	//O(N)
+	int maxendinghere = 0;
+	for(int i = 0; i<size; ++i){
+		maxendinghere = ((maxendinghere + vec[i])<0)?0:(maxendinghere + vec[i]);
+		maxsofar = (maxsofar<maxendinghere)?maxendinghere:maxsofar;
+	}
+	cout << "the maxsofar:" << maxsofar << endl;
+}
+
+void test_readdouble_fromfile(){
+	vector<double> vec;
+	ifstream infile("double.txt", ios::in);
+	string line;
+
+	while(getline(infile, line)){
+		vec.push_back(atof(line.c_str()));
+	}
+	double darray[vec.size()];
+	vector<double>::iterator it = vec.begin();
+	while(it!=vec.end()){
+		darray[it - vec.begin()] = *it++;
+	}
+
+	for(vector<double>::size_type i = 0; i<vec.size(); ++i){
+		cout << setprecision(2) << setiosflags(ios::fixed) << darray[i] << endl;
+	}
+}
+
+/**
+ * 读取当前文件追加到当前文件中
+ */
+void test_readappendfile(){
+	ifstream infile("test.txt", ifstream::in|ifstream::binary);
+	ofstream outfile("test.txt", ifstream::app|ifstream::binary);
+	infile.seekg(0, ifstream::end);
+
+	ifstream::streampos end = infile.tellg();
+	infile.seekg(0, ifstream::beg);
+
+	char b[512] = {0};
+	int c = 0;
+	for(int i = 0; i<end; i+=c){
+		infile.read(b, sizeof(b)/sizeof(char));
+		c = strlen(b);
+		outfile.write(b, c/sizeof(char));
+	}
+	infile.close();
+	outfile.close();
+	infile.clear();
+
+	infile.open("test.txt", ifstream::in);
+	//读取文件内容
+	char r = 0;
+	while(true){
+		infile >> r;
+		if (infile.eof())
+			break;
+		cout << r;
+	}
+	infile.close();
+}
+
 void test_fstream(){
 	string ifile = string("test_in.txt");
 	ifstream infile(ifile.c_str());
