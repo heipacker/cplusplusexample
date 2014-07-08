@@ -64,7 +64,9 @@ int main(int argc, char *argv[]) {
 	//test_readappendfile();
 	//test_vector_iterator();
 	//test_readdouble_fromfile();
-	test_max_cont_vector();
+	//test_max_cont_vector();
+	//test_pair_type();
+	test_map();
 	return 0;
 }
 

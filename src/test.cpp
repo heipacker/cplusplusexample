@@ -5,7 +5,7 @@
  *      Author: Administrator
  */
 #include "stdio.h"
-#include "stdlib.h"//ÓÃÓÚ²úÉúËæ»úÊı#include "time.h"//ÓÃÓÚ²úÉúËæ»úÊı#include <stdarg.h>
+#include "stdlib.h"//ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½#include "time.h"//ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½#include <stdarg.h>
 #include <iomanip>
 #include <typeinfo>
 #include <iostream>
@@ -13,6 +13,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <vector>
+#include <map>
+#include <utility>
 #include "../header/shape.h"
 #include "../header/test.h"
 using namespace std;
@@ -39,7 +41,7 @@ using namespace std;
 
 #define X 3
 #define PRINTF(x) printf("the "#x"lait %d\n",((x)*(x)));
-#define SCAN(N,String) scanf("%"#N"s",String);  //NÊÇ½ØÈ¡µÄ¸öÊı  StringÊÇ´æ´¢µÄ×Ö·û´®#define BL1 bb##ll##1
+#define SCAN(N,String) scanf("%"#N"s",String);  //Nï¿½Ç½ï¿½È¡ï¿½Ä¸ï¿½ï¿½ï¿½  Stringï¿½Ç´æ´¢ï¿½ï¿½ï¿½Ö·ï¿½#define BL1 bb##ll##1
 #define BL(N) bbll##N
 #define incr(v, low, high) \
   do{ for ((v) = (low); (v) <= (high); (v)++); }while(0)
@@ -63,6 +65,32 @@ void func(char (&p)[10]){
     printf("%d\n",sizeof(p));        // 10
 }
 
+void test_pair_type(){
+	pair<int, int> p = make_pair(1, 10);
+
+	cout << "first:" << p.first << "\tsecond:" << p.second << endl;
+
+	pair<string, string> author("å”¯æˆ‘ä¸­å", "heipacker");
+
+	cout << "author:\t" << "first:" << author.first << "\tsecond:" << author.second << endl;
+
+	pair<wstring, wstring> author1(wstring(L"heipacker"), wstring(L"å”¯æˆ‘ä¸­å"));
+	wcout << author1.second;
+	wcout << L"author1:\t" << L"first:" << author1.first << L"\tsecond:" << author1.second << endl;
+}
+
+void test_map(){
+	map<int, int> testmap;
+	for(int i = 0; i<9; ++i){
+		testmap.insert(make_pair(i, i));
+	}
+
+	for(map<int, int>::iterator m_it = testmap.begin(); m_it!=testmap.end(); ++m_it){
+		cout << "first:" << m_it->first << "\tsecond:" << m_it->second << endl;
+
+	}
+}
+
 void test_vector_iterator(){
 	vector<int> vec;
 	for(int i=0; i<10; ++i){
@@ -74,7 +102,7 @@ void test_vector_iterator(){
 	while(it!=vec.end()){
 		cout << *it++;
 	}
-	//ĞÁĞÁ¿à¿à¸øÄãÉÏ¿Î Ï£ÍûÄãÃÇÓĞºÃµÄÎ´À´ »¹ÕâÑù
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Ï£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ĞºÃµï¿½Î´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	vector<int>::const_reverse_iterator rit = vec.rbegin();
 	while(rit!=vec.rend()){
 		cout << *rit++;
@@ -156,7 +184,7 @@ void test_readdouble_fromfile(){
 }
 
 /**
- * ¶ÁÈ¡µ±Ç°ÎÄ¼ş×·¼Óµ½µ±Ç°ÎÄ¼şÖĞ
+ * ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½Ä¼ï¿½×·ï¿½Óµï¿½ï¿½ï¿½Ç°ï¿½Ä¼ï¿½ï¿½ï¿½
  */
 void test_readappendfile(){
 	ifstream infile("test.txt", ifstream::in|ifstream::binary);
@@ -178,7 +206,7 @@ void test_readappendfile(){
 	infile.clear();
 
 	infile.open("test.txt", ifstream::in);
-	//¶ÁÈ¡ÎÄ¼şÄÚÈİ
+	//ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	char r = 0;
 	while(true){
 		infile >> r;
@@ -204,13 +232,13 @@ void test_fstream(){
 
 
 	//use open fun
-	infile.close();//ÏÈ¹Ø±Õ
+	infile.close();//ï¿½È¹Ø±ï¿½
 	infile.open(ifile.c_str());
 
 	outfile.close();
 	outfile.open(ofile.c_str());
 
-	//¶ÁÈ¡ÎÄ¼şÖĞĞÅÏ¢ È»ºóÊä³ö
+	//ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ È»ï¿½ï¿½ï¿½ï¿½ï¿½
 	vector<string> files;
 	for(int i =0; i<3; ++i){
 		files.push_back("file" + i);
@@ -272,7 +300,7 @@ void test_stream(){
 		}
 	}
 
-	//Ê¹ÓÃflush
+	//Ê¹ï¿½ï¿½flush
 	cout << "first" << flush << "second" << flush;
 
 	cout << "first" << unitbuf << "second" << nounitbuf;
@@ -292,7 +320,7 @@ void test_sizeof(){
 	int *p = &a;
 	printf("%d\n", *p);
 	unsigned int app = 0;
-	//app = sizeof (int) * p; ÕâÀïÏÈÖ´ĞĞsizeof(int) È»ºóÖ´ĞĞ³Ë·¨²Ù×÷		±àÒë²»Í¨¹ı ¸ÄÎªapp = sizeof (int) * (int)p
+	//app = sizeof (int) * p; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½sizeof(int) È»ï¿½ï¿½Ö´ï¿½Ğ³Ë·ï¿½ï¿½ï¿½ï¿½ï¿½		ï¿½ï¿½ï¿½ë²»Í¨ï¿½ï¿½ ï¿½ï¿½Îªapp = sizeof (int) * (int)p
 	//app = sizeof (int) * p;
 
 	printf("sizeof (int) * p result:%d\n", app);
@@ -317,7 +345,7 @@ void lookup(int a){
 void test_lookup(){
 	const int a = 10;
 	const int &b = a;
-	//lookup(a);//×óÖµ
+	//lookup(a);//ï¿½ï¿½Öµ
 	//lookup(b);
 }
 
@@ -328,7 +356,7 @@ void test_lsort(){
 	int a[100000];
 	int n = 0;
 	while(scanf("%d", &a[n])!=EOF)++n;
-	//µ÷ÓÃÀà¿âÊµÏÖ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	qsort(a, n, sizeof(int), (int (*)(const void*, const void*))intcomp);
 	for(int i = 0; i<n; ++i){
 		printf("%d\t", a[i]);
@@ -396,7 +424,7 @@ void test_is_shorter(){
 	printf("%d\n", is_shorter(string("1111"), string("12")));
 }
 
-int *p = new int[10];//Î´³õÊ¼»¯
+int *p = new int[10];//Î´ï¿½ï¿½Ê¼ï¿½ï¿½
 
 void test_cstyle_char(){
 	char ca1[] = {'C', '+', '+',};
@@ -589,7 +617,7 @@ void test_goto() {
 		goto f;
 	}
 	f: printf("ffffffffffff\n");
-	t: printf("tttttttttttt\n"); //Ò²ÊÇ»áÖ´ĞĞµÄ
+	t: printf("tttttttttttt\n"); //Ò²ï¿½Ç»ï¿½Ö´ï¿½Ğµï¿½
 }
 
 void test_not_operation() {
@@ -646,7 +674,7 @@ void test_pre_printf() {
 	print("hello world----%d\n", 1111);
 	print("hello world----\n");
 }
-//ÓÃÀ¨ºÅ½«Ö¸ÕëÀ¨ÆğÀ´
+//ï¿½ï¿½ï¿½ï¿½ï¿½Å½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //void print_array(int (*a)[3]){
 void print_array(int a[1][3]) {
 	for (int i = 0; i < 2; ++i) {
@@ -673,11 +701,11 @@ void test_pre_line() {
 }
 
 void test_pre_inmacor() {
-	printf("µ±Ç°ĞĞºÅ£º%d\n", __LINE__);
-	printf("µ±Ç°Ô´ÎÄ¼ş£º%s\n", __FILE__);
-	printf("±àÒëÈÕÆÚ£º%s\n", __DATE__);
-	printf("±àÒëÊ±¼ä£º%s\n", __TIME__);
-	printf("ÊÇ·ñ·ûºÏSTD±ê×¼£º%d\n", __STDC__);
+	printf("ï¿½ï¿½Ç°ï¿½ĞºÅ£ï¿½%d\n", __LINE__);
+	printf("ï¿½ï¿½Ç°Ô´ï¿½Ä¼ï¿½ï¿½ï¿½%s\n", __FILE__);
+	printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½%s\n", __DATE__);
+	printf("ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º%s\n", __TIME__);
+	printf("ï¿½Ç·ï¿½ï¿½ï¿½STDï¿½ï¿½×¼ï¿½ï¿½%d\n", __STDC__);
 }
 
 void test_pre_vaargs() {
@@ -710,8 +738,8 @@ void test_pre_process() {
 void testArrayPointer() {
 	int a[2][2] = { { 1, 2 }, { 3, 4 } };
 	char c[3] = { '1', '2', '\0' };
-	//int **aa;//ÀàĞÍint** Ö¸ÏòµÄÀàĞÍint*
-	int (*b)[2]; //ÀàĞÍint (*)[2] Ö¸ÏòµÄÀàĞÍint a[2]
+	//int **aa;//ï¿½ï¿½ï¿½ï¿½int** Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½int*
+	int (*b)[2]; //ï¿½ï¿½ï¿½ï¿½int (*)[2] Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½int a[2]
 	char (*bc)[3];
 	b = a;
 	bc = &c;
@@ -732,40 +760,40 @@ void printTypeSize() {
 	cout
 			<< "--------------------------------------------printTypeSize---------------------------------"
 			<< endl;
-	char b = 65; //1×Ö½Ú
-	cout << "char b sizeof:" << sizeof(b) << "×Ö½Ú" << endl;
-	signed char l = 11; //1×Ö½Ú Ä¬ÈÏ
-	cout << "signed char l sizeof:" << sizeof(l) << "×Ö½Ú" << endl;
-	unsigned char j = 9; //1×Ö½Ú
-	cout << "unsigned char j sizeof:" << sizeof(j) << "×Ö½Ú" << endl;
+	char b = 65; //1ï¿½Ö½ï¿½
+	cout << "char b sizeof:" << sizeof(b) << "ï¿½Ö½ï¿½" << endl;
+	signed char l = 11; //1ï¿½Ö½ï¿½ Ä¬ï¿½ï¿½
+	cout << "signed char l sizeof:" << sizeof(l) << "ï¿½Ö½ï¿½" << endl;
+	unsigned char j = 9; //1ï¿½Ö½ï¿½
+	cout << "unsigned char j sizeof:" << sizeof(j) << "ï¿½Ö½ï¿½" << endl;
 
-	int a = 1; //4×Ö½Ú
-	cout << "int a sizeof:" << sizeof(a) << "×Ö½Ú" << endl;
-	unsigned int f = 5; //4×Ö½Ú ÎŞ·ûºÅĞÍ
-	cout << "unsigned int f sizeof:" << sizeof(f) << "×Ö½Ú" << endl;
-	long int e = 4; //4×Ö½ÚÄ¬ÈÏ
-	cout << "long int e sizeof:" << sizeof(e) << "×Ö½Ú" << endl;
-	unsigned long int m = 12; //4×Ö½Ú ÎŞ·ûºÅĞÍ Ä¬ÈÏ
-	cout << "unsigned long int m sizeof:" << sizeof(m) << "×Ö½Ú" << endl;
-	short int d = 3; //2×Ö½Ú
-	cout << "short int d sizeof:" << sizeof(d) << "×Ö½Ú" << endl;
-	unsigned short int g = 6; //2×Ö½Ú
-	cout << "unsigned short int g sizeof:" << sizeof(g) << "×Ö½Ú" << endl;
+	int a = 1; //4ï¿½Ö½ï¿½
+	cout << "int a sizeof:" << sizeof(a) << "ï¿½Ö½ï¿½" << endl;
+	unsigned int f = 5; //4ï¿½Ö½ï¿½ ï¿½Ş·ï¿½ï¿½ï¿½ï¿½
+	cout << "unsigned int f sizeof:" << sizeof(f) << "ï¿½Ö½ï¿½" << endl;
+	long int e = 4; //4ï¿½Ö½ï¿½Ä¬ï¿½ï¿½
+	cout << "long int e sizeof:" << sizeof(e) << "ï¿½Ö½ï¿½" << endl;
+	unsigned long int m = 12; //4ï¿½Ö½ï¿½ ï¿½Ş·ï¿½ï¿½ï¿½ï¿½ Ä¬ï¿½ï¿½
+	cout << "unsigned long int m sizeof:" << sizeof(m) << "ï¿½Ö½ï¿½" << endl;
+	short int d = 3; //2ï¿½Ö½ï¿½
+	cout << "short int d sizeof:" << sizeof(d) << "ï¿½Ö½ï¿½" << endl;
+	unsigned short int g = 6; //2ï¿½Ö½ï¿½
+	cout << "unsigned short int g sizeof:" << sizeof(g) << "ï¿½Ö½ï¿½" << endl;
 
-	float h = 7; //4×Ö½Ú
-	cout << "float h sizeof:" << sizeof(h) << "×Ö½Ú" << endl;
-	double i = 8; //8×Ö½Ú
-	cout << "double i sizeof:" << sizeof(i) << "×Ö½Ú" << endl;
+	float h = 7; //4ï¿½Ö½ï¿½
+	cout << "float h sizeof:" << sizeof(h) << "ï¿½Ö½ï¿½" << endl;
+	double i = 8; //8ï¿½Ö½ï¿½
+	cout << "double i sizeof:" << sizeof(i) << "ï¿½Ö½ï¿½" << endl;
 	long double c = 11;
-	cout << "long double c sizeof:" << sizeof(c) << "×Ö½Ú" << endl;
+	cout << "long double c sizeof:" << sizeof(c) << "ï¿½Ö½ï¿½" << endl;
 
-	bool k = 10; //1×Ö½Ú
-	cout << "bool k sizeof:" << sizeof(k) << "×Ö½Ú" << endl;
+	bool k = 10; //1ï¿½Ö½ï¿½
+	cout << "bool k sizeof:" << sizeof(k) << "ï¿½Ö½ï¿½" << endl;
 	cout
 			<< "--------------------------------------------printTypeSize---------------------------------"
 			<< endl;
 
-	//Êä³ö
+	//ï¿½ï¿½ï¿½
 //	cout << a << '\t' << b << '\t' << c << '\t' << d << '\t' << e << '\t' << f << '\t' << g << '\t' << h << '\t' << i << '\t' << j << '\t' << k << '\t' << l << '\t' << m << '\t';
 }
 
@@ -773,34 +801,34 @@ void printType() {
 	cout
 			<< "--------------------------------------------printType---------------------------------"
 			<< endl;
-	char b = 65; //1×Ö½Ú
+	char b = 65; //1ï¿½Ö½ï¿½
 	cout << "char b type:" << typeid(b).name() << endl;
-	signed char l = 11; //1×Ö½Ú Ä¬ÈÏ
+	signed char l = 11; //1ï¿½Ö½ï¿½ Ä¬ï¿½ï¿½
 	cout << "signed char l type:" << typeid(l).name() << endl;
-	unsigned char j = 9; //1×Ö½Ú
+	unsigned char j = 9; //1ï¿½Ö½ï¿½
 	cout << "unsigned char j type:" << typeid(j).name() << endl;
 
-	int a = 1; //4×Ö½Ú
+	int a = 1; //4ï¿½Ö½ï¿½
 	cout << "int a type:" << typeid(a).name() << endl;
-	unsigned int f = 5; //4×Ö½Ú ÎŞ·ûºÅĞÍ
+	unsigned int f = 5; //4ï¿½Ö½ï¿½ ï¿½Ş·ï¿½ï¿½ï¿½ï¿½
 	cout << "unsigned int f type:" << typeid(f).name() << endl;
-	long int e = 4; //4×Ö½ÚÄ¬ÈÏ
+	long int e = 4; //4ï¿½Ö½ï¿½Ä¬ï¿½ï¿½
 	cout << "long int e type:" << typeid(e).name() << endl;
-	unsigned long int m = 12; //4×Ö½Ú ÎŞ·ûºÅĞÍ Ä¬ÈÏ
+	unsigned long int m = 12; //4ï¿½Ö½ï¿½ ï¿½Ş·ï¿½ï¿½ï¿½ï¿½ Ä¬ï¿½ï¿½
 	cout << "unsigned long int m type:" << typeid(m).name() << endl;
-	short int d = 3; //2×Ö½Ú
+	short int d = 3; //2ï¿½Ö½ï¿½
 	cout << "short int d type:" << typeid(d).name() << endl;
-	unsigned short int g = 6; //2×Ö½Ú
+	unsigned short int g = 6; //2ï¿½Ö½ï¿½
 	cout << "unsigned short int g type:" << typeid(g).name() << endl;
 
-	float h = 7; //4×Ö½Ú
+	float h = 7; //4ï¿½Ö½ï¿½
 	cout << "float h type:" << typeid(h).name() << endl;
-	double i = 8; //8×Ö½Ú
+	double i = 8; //8ï¿½Ö½ï¿½
 	cout << "double i type:" << typeid(i).name() << endl;
 	long double c = 11;
 	cout << "long double c type:" << typeid(c).name() << endl;
 
-	bool k = 10; //1×Ö½Ú
+	bool k = 10; //1ï¿½Ö½ï¿½
 	cout << "bool k type:" << typeid(k).name() << endl;
 	cout
 			<< "--------------------------------------------printType---------------------------------"
@@ -835,8 +863,8 @@ void testBeep() {
 
 void testOperation() {
 	cout << 3 + 4 << endl;
-	//L/l±íÊ¾Ë«¾«¶ÈµÄ³£Á¿
-	//F/f±íÊ¾µ¥¾«¶ÈµÄ³£Á¿
+	//L/lï¿½ï¿½Ê¾Ë«ï¿½ï¿½ï¿½ÈµÄ³ï¿½ï¿½ï¿½
+	//F/fï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ÈµÄ³ï¿½ï¿½ï¿½
 
 	const float fa = 1.12L;
 	//fa = 12;
@@ -848,13 +876,13 @@ void testOperation() {
 	int ab = -2;
 	int ac = -7;
 	int ad = 2;
-	//Õı³£³ı·¨½á¹û
+	//ï¿½ï¿½ï¿½ï¿½ï¿½
 	cout << "7/-2=" << aa / ab << endl;
 	cout << "-7/2=" << ac / ad << endl;
-	//½á¹ûµÄÕı¸ººÅÓëµÚÒ»¸ö²Ù×÷·ûÏàÍ¬
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬
 	cout << "7%-2=" << aa % ab << endl;
 	cout << "-7%2=" << ac % ad << endl;
-	//²Ù×÷Êı²»ÄÜÎª·ÇÕûĞÍ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	//cout << 1.1%2 << endl;
 	//cout << 1%2.1 << endl;
 
@@ -864,16 +892,16 @@ void testOperation() {
 }
 
 void testGlobalVar() {
-	srand(time(NULL));	//ÓÃÓÚ²úÉúËæ»úÊı£¬²»±ØÀí»á
+	srand(time(NULL));	//ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	for (int i = 0; i < 4; i++) {
-		makenum();	//²úÉúËæ»úÊı·ÅÈë»º³åÇø
-		cal();	//¶Ô»º³åÇøµÄÊı½øĞĞ´¦Àí
-		output();	//Êä³ö»º³åÇøµÄÊıÖµ
+		makenum();	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë»ºï¿½ï¿½ï¿½ï¿½
+		cal();	//ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½
+		output();	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 	}
 }
 
 void localVarIncrement() {
-	static int currentNum;	//Î´³õÊ¼»¯  ±àÒëÆ÷×Ô¶¯³õÊ¼»¯Îª0
+	static int currentNum;	//Î´ï¿½ï¿½Ê¼ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½Îª0
 	cout << ++currentNum << endl;
 }
 
@@ -885,21 +913,21 @@ void testStaticLocalVar() {
 
 void testCondition() {
 	int a, b;
-	cout << "ÇëÊäÈëÁ½¸öÊı£º";
+	cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 	cin >> a >> b;
-	if (a > b) {	//Èç¹ûa±Èb´ó£¬Ôò½«Á½¸öÊı½»»»
-		int temp;	//´´½¨Ò»¸öÁÙÊ±±äÁ¿
+	if (a > b) {	//ï¿½ï¿½ï¿½aï¿½ï¿½bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		int temp;	//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 		temp = a;
 		a = b;
 		b = temp;
 	}
-	cout << a << " " << b << endl;	//½«Á½¸öÊı´ÓĞ¡µ½´óÊä³ö
+	cout << a << " " << b << endl;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
 void testSwitch() {
 	float a, b;
 	char oper;
-	cout << "ÇëÊäÈëÒ»¸ö±í´ïÊ½£¨eg.1+2£©£º" << endl;
+	cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½eg.1+2ï¿½ï¿½ï¿½ï¿½" << endl;
 	cin >> a >> oper >> b;
 	switch (oper) {
 	case '+': {
@@ -918,13 +946,13 @@ void testSwitch() {
 		if (b != 0)
 			cout << a << oper << b << '=' << a / b << endl;
 		else
-			cout << "³ö´íÀ²£¡" << endl;
+			cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" << endl;
 		break;
 	}
 	default:
-		cout << "³ö´íÀ²£¡" << endl;
+		cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" << endl;
 	}
-	//²âÊÔ
+	//ï¿½ï¿½ï¿½ï¿½
 	char test = 'a';
 	switch (test) {
 	case 'a': {
@@ -945,7 +973,7 @@ void testOverride() {
 	int a = -5, b = 3;
 	float c = -2.4f, d = 8.4f;
 	double e = -3e-9, f = 3e6;
-	cout << "a=" << abs(a) << endl << "b=" << abs(b) << endl;	//Êä³öº¯Êı·µ»ØµÄ½á¹û
+	cout << "a=" << abs(a) << endl << "b=" << abs(b) << endl;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ØµÄ½ï¿½ï¿½
 	cout << "c=" << abs(c) << endl << "d=" << abs(d) << endl;
 	cout << "e=" << abs(e) << endl << "f=" << abs(f) << endl;
 }
@@ -953,12 +981,12 @@ void testOverride() {
 void testPointer() {
 	int i = 3;
 	int *iptr = &i;
-	int **iptrptr = &iptr;	//iptrÒ²ÊÇ±äÁ¿£¬Ò²ÄÜ¹»»ñÈ¡ËüµÄµØÖ·
-	cout << "Address of Var i=" << iptr << endl;	//Êä³öiptr´æ´¢µÄÄÚÈİ£¬¼´iÔÚÄÚ´æÖĞµÄµØÖ·
-	cout << "Data of Var i=" << *iptr << endl;	//Êä³öiptrËùÖ¸ÏòµÄ±äÁ¿
-	cout << "Address of Pointer iptr=" << iptrptr << endl;	//Êä³öiptrÔÚÄÚ´æÖĞµÄµØÖ·
-	cout << "Address of Var i=" << *iptrptr << endl;	//Êä³öiptrptrËùÖ¸ÏòµÄ±äÁ¿£¬¼´iptr
-	*iptr = 2 + *iptr;	//*iptr¿ÉÒÔ×÷×óÖµ
+	int **iptrptr = &iptr;	//iptrÒ²ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½Ü¹ï¿½ï¿½ï¿½È¡ï¿½ï¿½Äµï¿½Ö·
+	cout << "Address of Var i=" << iptr << endl;	//ï¿½ï¿½ï¿½iptrï¿½æ´¢ï¿½ï¿½ï¿½ï¿½ï¿½İ£ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Ú´ï¿½ï¿½ĞµÄµï¿½Ö·
+	cout << "Data of Var i=" << *iptr << endl;	//ï¿½ï¿½ï¿½iptrï¿½ï¿½Ö¸ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
+	cout << "Address of Pointer iptr=" << iptrptr << endl;	//ï¿½ï¿½ï¿½iptrï¿½ï¿½ï¿½Ú´ï¿½ï¿½ĞµÄµï¿½Ö·
+	cout << "Address of Var i=" << *iptrptr << endl;	//ï¿½ï¿½ï¿½iptrptrï¿½ï¿½Ö¸ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iptr
+	*iptr = 2 + *iptr;	//*iptrï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 	cout << "Data of Var i=" << *iptr << endl;
 }
 
@@ -972,30 +1000,30 @@ void testEnum() {
 }
 
 void testStruct() {
-	student s1, s2;	//Ê×´ÎÊ¹ÓÃstudentÀàĞÍÃû£¬¶¨Òå±ØĞëÔÚÕâÖ®Ç°¡£
-	cout << "ÊäÈëÑ§ºÅ£º";
-	cin >> s1.idNumber;	//³ÉÔ±Êı¾İ¿ÉÒÔ±»Ğ´Èë
-	cout << "ÊäÈëĞÕÃû£º";
+	student s1, s2;	//ï¿½×´ï¿½Ê¹ï¿½ï¿½studentï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½
+	cout << "ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½Å£ï¿½";
+	cin >> s1.idNumber;	//ï¿½ï¿½Ô±ï¿½ï¿½İ¿ï¿½ï¿½Ô±ï¿½Ğ´ï¿½ï¿½
+	cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 	cin >> s1.name;
-	cout << "ÊäÈëÄêÁä£º";
+	cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä£º";
 	cin >> s1.age;
-	cout << "ÊäÈëÔºÏµ£º";
+	cout << "ï¿½ï¿½ï¿½ï¿½ÔºÏµï¿½ï¿½";
 	cin >> s1.department;
-	cout << "ÊäÈë³É¼¨£º";
+	cout << "ï¿½ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½";
 	cin >> s1.gpa;
-	cout << "Ñ§Éús1ĞÅÏ¢£º" << endl << "Ñ§ºÅ£º" << s1.idNumber << "ĞÕÃû£º" << s1.name
-			<< "ÄêÁä£º" << s1.age << endl << "ÔºÏµ£º" << s1.department << "³É¼¨£º"
-			<< s1.gpa << endl;	//³ÉÔ±Êı¾İÒ²ÄÜ¹»±»¶Á³ö
-	s2 = s1;	//°Ñs1µÄ¸ø¸÷¸ö³ÉÔ±Êı¾İÖµ·Ö±ğ¸´ÖÆµ½s2ÖĞ
-	cout << "Ñ§Éús2ĞÅÏ¢£º" << endl << "Ñ§ºÅ£º" << s2.idNumber << "ĞÕÃû£º" << s2.name
-			<< "ÄêÁä£º" << s2.age << endl << "ÔºÏµ£º" << s2.department << "³É¼¨£º"
+	cout << "Ñ§ï¿½ï¿½s1ï¿½ï¿½Ï¢ï¿½ï¿½" << endl << "Ñ§ï¿½Å£ï¿½" << s1.idNumber << "ï¿½ï¿½ï¿½ï¿½" << s1.name
+			<< "ï¿½ï¿½ï¿½ä£º" << s1.age << endl << "ÔºÏµï¿½ï¿½" << s1.department << "ï¿½É¼ï¿½ï¿½ï¿½"
+			<< s1.gpa << endl;	//ï¿½ï¿½Ô±ï¿½ï¿½ï¿½Ò²ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	s2 = s1;	//ï¿½ï¿½s1ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½Öµï¿½Ö±ï¿½ï¿½Æµï¿½s2ï¿½ï¿½
+	cout << "Ñ§ï¿½ï¿½s2ï¿½ï¿½Ï¢ï¿½ï¿½" << endl << "Ñ§ï¿½Å£ï¿½" << s2.idNumber << "ï¿½ï¿½ï¿½ï¿½" << s2.name
+			<< "ï¿½ï¿½ï¿½ä£º" << s2.age << endl << "ÔºÏµï¿½ï¿½" << s2.department << "ï¿½É¼ï¿½ï¿½ï¿½"
 			<< s2.gpa << endl;
-	//³õÊ¼»¯
+	//ï¿½ï¿½Ê¼ï¿½ï¿½
 	student s3 = { 428004, "Tomato", 20, "ComputerScience", 84.5 };
 	student *s4 = &s3;
-	cout << "Ñ§Éús4ĞÅÏ¢£º" << endl << "Ñ§ºÅ£º" << s4->idNumber << "ĞÕÃû£º" << s4->name
-			<< "ÄêÁä£º" << s4->age << endl << "ÔºÏµ£º" << s4->department << "³É¼¨£º"
-			<< s4->gpa << endl;	//³ÉÔ±Êı¾İÒ²ÄÜ¹»±»¶Á³ö
+	cout << "Ñ§ï¿½ï¿½s4ï¿½ï¿½Ï¢ï¿½ï¿½" << endl << "Ñ§ï¿½Å£ï¿½" << s4->idNumber << "ï¿½ï¿½ï¿½ï¿½" << s4->name
+			<< "ï¿½ï¿½ï¿½ä£º" << s4->age << endl << "ÔºÏµï¿½ï¿½" << s4->department << "ï¿½É¼ï¿½ï¿½ï¿½"
+			<< s4->gpa << endl;	//ï¿½ï¿½Ô±ï¿½ï¿½ï¿½Ò²ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 void nextday(Day &D) {
 	switch (D) {
@@ -1048,11 +1076,11 @@ void display(Day D) {
 	}
 }
 
-int buffer;	//¶¨ÒåÈ«¾Ö±äÁ¿£¬ÒÔÏÂº¯Êı¶¼ÄÜÊ¹ÓÃËü	Ä¬ÈÏÎª0
+int buffer;	//ï¿½ï¿½ï¿½ï¿½È«ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âºï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½	Ä¬ï¿½ï¿½Îª0
 
 void makenum() {
 	cout << "Running make number..." << endl;
-	buffer = rand();	//°Ñ²úÉúµÄËæ»úÊı·ÅÈë»º³åÇø
+	buffer = rand();	//ï¿½Ñ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë»ºï¿½ï¿½ï¿½ï¿½
 }
 void cal() {
 	cout << "Running calculate..." << endl;
@@ -1062,10 +1090,10 @@ void output() {
 	cout << "Running output..." << endl;
 	cout << buffer << endl;
 }
-//º¯Êı¶¨Òå
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 int abs(int a) {
-	cout << "int abs" << endl;	//ÏÔÊ¾ÔËĞĞÁËÄÄ¸öº¯Êı
-	return (a >= 0 ? a : -a);	//Èç¹ûa´óÓÚµÈÓÚÁãÔò·µ»Øa£¬·ñÔò·µ»Ø-a¡£
+	cout << "int abs" << endl;	//ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	return (a >= 0 ? a : -a);	//ï¿½ï¿½ï¿½aï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½aï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½-aï¿½ï¿½
 }
 float abs(float a) {
 	cout << "float abs" << endl;
@@ -1100,7 +1128,7 @@ void testHeader() {
 
 void generate(int m, int n){
 	for(int i = 0; i < n; i++){
-		if(rand()%(n-i) < m) { //¼´ÒÔt/(n-i)µÄ¸ÅÂÊÖ´ĞĞÏÂÃæµÄÓï¾ä
+		if(rand()%(n-i) < m) { //ï¿½ï¿½ï¿½ï¿½t/(n-i)ï¿½Ä¸ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			printf("%d\n",i);
 			m--;
 		}

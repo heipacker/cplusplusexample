@@ -17,6 +17,10 @@
 
 using namespace std;
 
+void test_pair_type();
+
+void test_map();
+
 void test_max_cont_vector();
 
 void test_readdouble_fromfile();
@@ -122,7 +126,7 @@ public:
 	}
 };
 /**
- *¾ØÐÎ
+ *ï¿½ï¿½ï¿½ï¿½
  */
 class Rectangle: Shape {
 private:
@@ -166,7 +170,7 @@ void makenum() ;
 void cal() ;
 
 void output() ;
-//º¯Êý¶¨Òå
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 int abs(int a) ;
 
 float abs(float a) ;
