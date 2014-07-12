@@ -4,8 +4,8 @@
  *  Created on: 2014-4-13
  *      Author: Administrator
  */
-#include "stdio.h"
-#include "stdlib.h"//���ڲ��������#include "time.h"//���ڲ��������#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>#include <time.h>#include <stdarg.h>
 #include <iomanip>
 #include <typeinfo>
 #include <iostream>
@@ -14,7 +14,9 @@
 #include <stdexcept>
 #include <vector>
 #include <map>
+#include <set>
 #include <utility>
+#include <algorithm>
 #include "../header/shape.h"
 #include "../header/test.h"
 using namespace std;
@@ -65,6 +67,112 @@ void func(char (&p)[10]){
     printf("%d\n",sizeof(p));        // 10
 }
 
+enum {BITSPERWORD, SHIFT=5, MASK=0x1F};
+
+void set1(int *x, int i){
+	x[i>>SHIFT] |= (1 << (i & MASK));
+}
+
+void clr(int *x, int i){
+	x[i>>SHIFT] &= ~(1 << (1 & MASK));
+}
+
+int test(int *x, int i){
+	return x[i>>SHIFT] & (1 << (i & MASK));
+}
+
+void test_vector_bit(){
+	int *x = new int[1000];
+	for(int i=0; i<1000*32; ++i){
+		clr(x, i);
+	}
+	set1(x, 1000*32-1);
+	if(test(x, 1000*32-1)){
+		cout << 1000*32-1;
+	} else{
+		cout << "not in x";
+	}
+
+	delete []x;
+}
+
+struct node{
+	int val;
+	node *left, *right;
+
+	node(int val){
+		this->val = val;
+		left = NULL;
+		right = NULL;
+	}
+};
+
+node *rinsert(node *p, int target){
+	if(!p){
+		p = new node(target);
+	}
+	if(p->val>target){
+		p->left = rinsert(p->left, target);
+	} else if(p->val<target){
+		p->right = rinsert(p->right, target);
+	}
+	return p;
+}
+
+void traverse(node *p){
+	if(!p){
+		return;
+	}
+	traverse(p->left);
+	cout << p->val << '\t';
+	traverse(p->right);
+}
+
+void test_bst_search(){
+	int a[] = {12,1,5,6,9,7};
+	node *root = NULL;
+	for(int i=0; i<6; ++i){
+		root = rinsert(root, a[i]);
+	}
+	traverse(root);
+}
+
+void test_algorithm(){
+	int search_value;
+	vector<int> vec;
+	for(int i=0; i<100; ++i){
+		vec.push_back(i);
+	}
+
+	vector<int>::const_iterator result = find(vec.begin(), vec.end(), search_value);
+	cout << "The value " << search_value
+		 << (result==vec.end()?" is not present":" is present")
+		 << endl;
+
+	int ia[6] = {27, 210, 12, 47, 109, 83};
+	search_value = 83;
+	int *result1 = find(ia, ia+6, search_value);
+	cout << "The value " << search_value
+			 << (result1==ia+6?" is not present":" is present")
+			 << endl;
+}
+
+void genknuth(int m, int n){
+	srand((unsigned) time(NULL)); /*随机种子*/
+	for(int i=0; i<n; ++i){
+		if(rand()%(n-i)<m){
+			cout << i << endl;
+			--m;
+		}
+	}
+}
+
+void test_genknuth(){
+	int a , *pa=&a;
+	cout<<pa;
+	genknuth(3, 10);
+}
+
 void test_pair_type(){
 	pair<int, int> p = make_pair(1, 10);
 
@@ -88,6 +196,66 @@ void test_map(){
 	for(map<int, int>::iterator m_it = testmap.begin(); m_it!=testmap.end(); ++m_it){
 		cout << "first:" << m_it->first << "\tsecond:" << m_it->second << endl;
 
+	}
+}
+
+void test_map_return(){
+	//测试insert返回值
+	map<string, int> word_count;
+	string word;
+	while(cin>>word){
+		pair<map<string, int>::iterator ,bool> ret = word_count.insert(map<string, int>::value_type(word, 1));
+		if(!ret.second){
+			++ret.first->second;
+		}
+	}
+
+	for(map<string, int>::const_iterator it = word_count.begin(); it!=word_count.end(); ++it){
+		cout << it->first << "=" << it->second << endl;
+	}
+	//测试find返回值
+	int occurs = 0;
+	map<string, int>::iterator it = word_count.find("word");
+	if(it!=word_count.end()){
+		occurs = it->second;
+	}
+	cout << "occurs:" << occurs << endl;
+
+}
+
+void test_multimap(){
+	multimap<string, string> author;
+	author.insert(make_pair("heipacker", "sfasefrwe"));
+	author.insert(make_pair("heipacker", "sfoawejrwr"));
+
+	multimap<string, string>::iterator beg = author.lower_bound("heipacker");
+	multimap<string, string>::iterator end = author.upper_bound("heipacker");
+	while(beg!=end){
+		cout << beg->second << endl;
+		++beg;
+	}
+}
+
+void restricted_wc(ifstream &remove_file, map<string, int> &word_count){
+	set<string> excluded; //set to hold words we will ignore
+	string remove_word;
+	while(remove_file >> remove_word){
+		string word;
+		while(cin >> word){
+			if(!excluded.count(word)){
+				++word_count[word];
+			}
+		}
+	}
+}
+
+void test_set(){
+	ifstream ifile("testset.txt", ios::in);
+	map<string, int> word_count;
+	restricted_wc(ifile, word_count);
+
+	for(map<string, int>::const_iterator it = word_count.begin(); it!=word_count.end(); ++it){
+		cout << it->first << "=" << it->second << endl;
 	}
 }
 

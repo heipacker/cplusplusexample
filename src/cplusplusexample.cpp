@@ -66,7 +66,13 @@ int main(int argc, char *argv[]) {
 	//test_readdouble_fromfile();
 	//test_max_cont_vector();
 	//test_pair_type();
-	test_map();
+	//test_map();
+	//test_map_return();
+	//test_multimap();
+	//test_algorithm();
+	//test_genknuth();
+	//test_bst_search();
+	test_vector_bit();
 	return 0;
 }
 

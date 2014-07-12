@@ -17,9 +17,23 @@
 
 using namespace std;
 
+void test_vector_bit();
+
+void test_bst_search();
+
 void test_pair_type();
 
+void test_genknuth();
+
+void test_algorithm();
+
 void test_map();
+
+void test_map_return();
+
+void test_multimap();
+
+void test_set();
 
 void test_max_cont_vector();
 
