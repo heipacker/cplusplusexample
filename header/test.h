@@ -17,6 +17,8 @@
 
 using namespace std;
 
+void test_merge_sort();
+
 void test_vector_bit();
 
 void test_bst_search();

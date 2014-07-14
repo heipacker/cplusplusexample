@@ -72,7 +72,8 @@ int main(int argc, char *argv[]) {
 	//test_algorithm();
 	//test_genknuth();
 	//test_bst_search();
-	test_vector_bit();
+	//test_vector_bit();
+	test_merge_sort();
 	return 0;
 }
 
