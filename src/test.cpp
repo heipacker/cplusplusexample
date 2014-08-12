@@ -96,51 +96,6 @@ void test_vector_bit(){
 	delete []x;
 }
 
-void merge(int *a, int b, int m, int e){
-	int *t = new int[e - b + 1];
-	int i = 0;
-	int s = b, f = m + 1;
-	while(s<=m&&f<=e){
-		if(a[s]<a[f]){
-			t[i++] = a[s++];
-		} else{
-			t[i++] = a[f++];
-		}
-	}
-	while(s<=m){
-		t[i++] = a[s++];
-	}
-	while(f<=e){
-		t[i++] = a[f++];
-	}
-	int end = e - b + 1;
-	i=0;
-	while(i<end){
-		a[b++] = t[i++];
-	}
-	delete[] t;
-}
-
-void merge_sort(int *a, int b, int e){
-	if(b>=e){
-		return;
-	}
-	int m = (b + e)/2;
-	merge_sort(a, b, m);
-	merge_sort(a, m + 1, e);
-	merge(a, b, m, e);
-}
-//归并排序
-void test_merge_sort(){
-	int a[] = {4,1,5,1,2,6,3,8,12,10};
-
-	merge_sort(a, 0, 8);
-
-	for(int i=0; i<9; ++i){
-		cout << a[i] << '\t';
-	}
-}
-
 struct node{
 	int val;
 	node *left, *right;
@@ -593,6 +548,16 @@ void test_lsort(){
 	qsort(a, n, sizeof(int), (int (*)(const void*, const void*))intcomp);
 	for(int i = 0; i<n; ++i){
 		printf("%d\t", a[i]);
+	}
+}
+
+void test_merge_sort(){
+	int a[] = {4,1,5,1,2,6,3,8,12,10};
+
+	merge_sort(a, 0, 8);
+
+	for(int i=0; i<9; ++i){
+		cout << a[i] << '\t';
 	}
 }
 

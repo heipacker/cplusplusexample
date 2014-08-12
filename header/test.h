@@ -15,13 +15,12 @@
 #include "hsort.h"
 #include "isort.h"
 #include "shellsort.h"
+#include "msort.h"
 #include "perm.h"
 
 using namespace std;
 
 void test_default_construct();
-
-void test_merge_sort();
 
 void test_vector_bit();
 
@@ -54,6 +53,8 @@ void test_fstream();
 void test_sstream();
 
 void test_stream();
+
+void test_merge_sort();
 
 void test_shellsort();
 
