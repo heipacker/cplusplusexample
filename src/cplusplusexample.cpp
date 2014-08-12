@@ -60,6 +60,8 @@ int main(int argc, char *argv[]) {
 	//test_qsort();
 	//test_hsort();
 	//test_lsort();
+	//test_bisort();
+	test_shellsort();
 	//test_folat();
 	//test_readappendfile();
 	//test_vector_iterator();
@@ -73,7 +75,8 @@ int main(int argc, char *argv[]) {
 	//test_genknuth();
 	//test_bst_search();
 	//test_vector_bit();
-	test_merge_sort();
+	//test_merge_sort();
+	//test_default_construct();
 	return 0;
 }
 

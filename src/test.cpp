@@ -218,6 +218,26 @@ void test_genknuth(){
 	genknuth(3, 10);
 }
 
+class A{
+public:
+	A(){
+
+	}
+
+	A(int a):m_a(a){
+
+	}
+
+private:
+	int m_a;
+};
+
+void test_default_construct(){
+	A *arrays = new A[1]/*(1)*/;
+
+	cout << "test" << sizeof(arrays) << endl;
+}
+
 void test_pair_type(){
 	pair<int, int> p = make_pair(1, 10);
 
@@ -580,6 +600,30 @@ void test_hsort(){
 	int a[] = {1, 3, 2, 6, 4, 7, 4, 5, 3};
 	hsort(a, 8);
 	for(int i = 8; i>=0; --i){
+		printf("%d\t", a[i]);
+	}
+}
+
+void test_bisort(){
+	int a[] = {1, 3, 2, 6, 4, 7, 4, 5, 3};
+	bisort(a, 8);
+	for(int i = 0; i<=8; ++i){
+		printf("%d\t", a[i]);
+	}
+}
+
+void test_shellsort(){
+	int a[] = {1, 3, 2, 6, 4, 7, 4, 5, 3};
+	shellsort(a, 8);
+	for(int i = 0; i<=8; ++i){
+		printf("%d\t", a[i]);
+	}
+}
+
+void test_isort(){
+	int a[] = {1, 3, 2, 6, 4, 7, 4, 5, 3};
+	isort(a, 8);
+	for(int i = 0; i<=8; ++i){
 		printf("%d\t", a[i]);
 	}
 }
