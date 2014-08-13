@@ -16,9 +16,13 @@
 #include "isort.h"
 #include "shellsort.h"
 #include "msort.h"
+
+#include "btree.h"
 #include "perm.h"
 
 using namespace std;
+
+void test_traveserBTree();
 
 void test_default_construct();
 

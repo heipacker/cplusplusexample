@@ -81,6 +81,34 @@ int test(int *x, int i){
 	return x[i>>SHIFT] & (1 << (i & MASK));
 }
 
+void test_traveserBTree(){
+	BTree *root = BTree::createBTreePreOrder();
+	if(root){
+		cout << "前序遍历(递归):" << endl;
+		root->preOrderTraverseTreeRecursive();
+		cout << endl;
+
+		cout << "中序遍历(递归):" << endl;
+		root->inOrderTraverseTreeRecursive();
+		cout << endl;
+
+		cout << "后序遍历(递归):" << endl;
+		root->postOrderTraveseTreeRecursive();
+
+		cout << endl;
+		cout << "前序遍历(非递归):" << endl;
+		root->preOrderTraverseTree();
+		cout << endl;
+
+		cout << "中序遍历(非递归):" << endl;
+		root->inOrderTraverseTree();
+		cout << endl;
+
+		cout << "后序遍历(非递归):" << endl;
+		root->postOrderTraveseTreeRecursive();
+	}
+}
+
 void test_vector_bit(){
 	int *x = new int[1000];
 	for(int i=0; i<1000*32; ++i){

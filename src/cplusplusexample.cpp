@@ -61,7 +61,8 @@ int main(int argc, char *argv[]) {
 	//test_hsort();
 	//test_lsort();
 	//test_bisort();
-	test_merge_sort();
+	//test_merge_sort();
+	test_traveserBTree();
 	//test_shellsort();
 	//test_folat();
 	//test_readappendfile();
