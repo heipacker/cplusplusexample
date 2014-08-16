@@ -82,9 +82,21 @@ int test(int *x, int i){
 }
 
 void test_kmp(){
-	int arrays[] = {1,2,4,2,1,4,2,8};
-	int p[] = {2,1,4};
-	cout << "index:" << get_index(arrays, 8, 3, p, 3);
+	int arrays[] = {1,2,4,1,2,1,2,4,2,8};
+	int p[] = {2,1,2,4};
+	int alen = 8, plen = 4;
+	int *next = new int[plen];
+
+	get_kmp(p, next, plen);
+
+	for(int i=0; i<plen; ++i){
+		cout << next[i] << "\t";
+	}
+	cout << endl;
+
+	delete []next;
+
+	cout << "index:" << get_index(arrays, alen, 0, p, plen);
 }
 
 void test_traveserBTree(){

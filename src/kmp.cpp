@@ -33,8 +33,9 @@ int get_index(int arrays[], int alen, int pos, int p[], int plen){
 			j = next[j];
 		}
 	}
+	delete []next;
 	if(j==plen){
-		return j;
+		return i-j;
 	}
 	return -1;
 }
