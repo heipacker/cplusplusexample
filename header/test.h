@@ -17,10 +17,14 @@
 #include "shellsort.h"
 #include "msort.h"
 
+#include "kmp.h"
+
 #include "btree.h"
 #include "perm.h"
 
 using namespace std;
+
+void test_kmp();
 
 void test_traveserBTree();
 

@@ -81,6 +81,12 @@ int test(int *x, int i){
 	return x[i>>SHIFT] & (1 << (i & MASK));
 }
 
+void test_kmp(){
+	int arrays[] = {1,2,4,2,1,4,2,8};
+	int p[] = {2,1,4};
+	cout << "index:" << get_index(arrays, 8, 3, p, 3);
+}
+
 void test_traveserBTree(){
 	BTree *root = BTree::createBTreePreOrder();
 	if(root){

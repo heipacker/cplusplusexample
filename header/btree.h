@@ -139,7 +139,7 @@ public:
 	}
 
 	void visit() {
-		std::cout << value << '\t';
+		std::cout << value << '\t' << std::flush;
 	}
 
 	static std::stack<BTree*> *stackk;
