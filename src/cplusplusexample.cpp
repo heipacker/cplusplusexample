@@ -63,7 +63,8 @@ int main(int argc, char *argv[]) {
 	//test_bisort();
 	//test_merge_sort();
 	//test_traveserBTree();
-	test_kmp();
+	//test_kmp();
+	test_combination();
 	//test_shellsort();
 	//test_folat();
 	//test_readappendfile();

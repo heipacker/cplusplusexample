@@ -19,6 +19,7 @@
 #include <algorithm>
 #include "../header/shape.h"
 #include "../header/test.h"
+
 using namespace std;
 #define TEST
 
@@ -79,6 +80,14 @@ void clr(int *x, int i){
 
 int test(int *x, int i){
 	return x[i>>SHIFT] & (1 << (i & MASK));
+}
+
+void test_combination(){
+	int a[] = {1,2,3};
+	for(int i=1; i<4; ++i){
+		int b[i];
+		combination(a, 3, i, b, i);
+	}
 }
 
 void test_kmp(){

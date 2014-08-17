@@ -21,8 +21,11 @@
 
 #include "btree.h"
 #include "perm.h"
+#include "combination.h"
 
 using namespace std;
+
+void test_combination();
 
 void test_kmp();
 
